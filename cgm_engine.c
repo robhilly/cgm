@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "cgm_engine.h"
+
 #include "SDL_image.h"
 
-#include "cgm_engine.h"
+
 
 /*engine globals*/
 engine _eng;
@@ -106,6 +108,11 @@ SDL_Surface* eng_createSurface(int w, int h)
 SDL_Surface* eng_getScreen()
 {
     return _eng.screen;
+}
+
+void eng_fillScreen(Uint32 color)
+{
+    SDL_FillRect(_eng.screen, NULL, color);
 }
 
 void eng_drawPoint(int x, int y, Uint32 color)

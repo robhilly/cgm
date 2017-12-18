@@ -26,6 +26,14 @@ int wld_init(int tw, int th, int mw, int mh)
         _wld.draw_tiles[i] = NULL;
     }
 
+    /*initialize sprite list*/
+    _wld.spl = (sprList*)malloc(sizeof(sprList));
+    if(_wld.spl == NULL){
+        printf("\nError initializing sprite list");
+        return 1;
+    }
+    spl_init(_wld.spl);
+    printf("\nSprite list initalized");
 
 
     _wld.t_w = tw;
@@ -47,6 +55,12 @@ int wld_init(int tw, int th, int mw, int mh)
     _wld.view.xv = 0;
 
     return 1;
+}
+
+int wld_addSprite(sprite* spr)
+{
+    spl_add(_wld.spl, spr);
+    printf("\nSprite added");
 }
 
 int wld_addTiles(char* sheet, int num_tiles, int bor)
@@ -128,6 +142,9 @@ void wld_update()
     if(_wld.view.y < 0){
         _wld.view.y = 0;
     }
+
+    /*update sprite list*/
+    spl_update(_wld.spl);
 }
 
 void wld_render()
@@ -167,6 +184,9 @@ void wld_render()
         }
     }
 
+    /*sprite list*/
+    spl_draw(_wld.spl);
+
 }
 
 
@@ -183,5 +203,8 @@ void wld_close()
     for(i = 0; i < MAX_LAYERS; i++){
         tm_close(&_wld.layers[i]);
     }
+
+    spl_delete(_wld.spl);
+    free(_wld.spl);
 
 }

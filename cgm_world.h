@@ -36,6 +36,8 @@ int wld_init(int tw, int th, int mw, int mh);
 
 int wld_addTiles(char* sheet, int num_tiles, int bor);
 
+int wld_addSprite(sprite* spr);
+
 void wld_setCameraSpeed(int x_v, int y_v);
 
 void wld_setCameraPos(int p_x, int p_y);

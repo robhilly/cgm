@@ -34,6 +34,9 @@ int eng_wait();
 /*screen surface access*/
 SDL_Surface* eng_getScreen();
 
+/*FILL whole screen with specified color*/
+void eng_fillScreen(Uint32 color);
+
 SDL_Surface* eng_createSurface(int w, int h);
 
 void eng_drawPoint(int x, int y, Uint32 color);
